@@ -29,24 +29,29 @@ db.mongoose
         process.exit();
     });
 
+//rotas
 app.get('/', (req, res) => {
-    res.json({ message: 'Olá Mundo' });
+    res.json({ message: 'Olá Mundo'});
 });
+
+require('./app/routes/auth.routes')(app);
+require('./app/routes/user.routes')(app);
 
 app.listen(port, () => {
     console.log(`Servidor rodando na porta: ${port}`)
-})
+});
+
 
 function initial(){
     Role.estimatedDocumentCount((err, count) => {
         if (!err && count === 0){
             new Role({
-                name: "membro"
+                name: "membre"
             }).save(err => {
                 if (err){
                     console.log("error", err);
                 }
-                console.log("Adicionado Membro da Guilda");
+                console.log("Adicionado Membre da Guilda");
             });
             
             new Role({
