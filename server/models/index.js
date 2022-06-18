@@ -4,5 +4,5 @@ mongoose.Promise = global.Promise;
 const db = {};
 db.user = require("./user.model");
 db.role = require("./role.model");
-db.Roles = ["membro", "admin", "coruja"];
+db.Roles = ["membre", "admin", "coruja"];
 module.exports = db;
