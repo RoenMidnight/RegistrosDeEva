@@ -16,7 +16,7 @@ verifyToken = (req, res, next) => {
         if (err){
             return res.status(401).send({ message: "Acesso não autorizado!" });
         }
-        req.userId = decoded.indexOf;
+        req.userId = decoded.id;
         next();
     });
 }
@@ -29,9 +29,8 @@ isAdmin = (req, res, next) => {
         }
         Role.find({
             _id: { $in: user.roles }
-        },
-        (err, roles) => {
-            if(err) {
+        }, (err, roles) => {
+            if (err) {
                 res.status(500).send({message:err});
                 return;
             }
@@ -51,11 +50,11 @@ isAdmin = (req, res, next) => {
 isCoruja = (req, res, next) => {
     User.findById(req.userId).exec((err, user) => {
         if (err){
-            res.status(500).send({message: err});
+            res.status(500).send({ message: err });
             return;
         }
         Role.find({
-            _id: { $in:user.roles }
+            _id: { $in: user.roles }
         }, (err, roles) => {
             if (err){
                 res.status(500).send({messsage: err});

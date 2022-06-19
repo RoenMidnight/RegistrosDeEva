@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const db = {};
+db.mongoose = mongoose;
+
 db.user = require("./user.model");
 db.role = require("./role.model");
-db.Roles = ["membre", "admin", "coruja"];
+db.ROLES = ["membre", "admin", "coruja"];
+
 module.exports = db;

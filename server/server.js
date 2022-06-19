@@ -11,13 +11,13 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-const db = require("models");
-const { initial } = require('lodash');
+const db = require('./models');
+//const { initial } = require('lodash');
 const Role = db.role;
 
 db.mongoose
     .connect(process.env.CONNECTION_STRING, {
-        useNewParser: true,
+        //useNewParser: false,
         useUnifiedTopology: true
     })
     .then(() => {
@@ -34,8 +34,8 @@ app.get('/', (req, res) => {
     res.json({ message: 'Olá Mundo'});
 });
 
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 
 app.listen(port, () => {
     console.log(`Servidor rodando na porta: ${port}`)
