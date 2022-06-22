@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Router, Routes, Route, Link } from 'react-router-dom';
+import { Router, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import Login from './components/Login';
@@ -14,7 +14,8 @@ import { logout } from './actions/auth';
 import { clearMessage } from './actions/message';
 import { history } from './helpers/history';
 
-function App() {
+
+const App = () => {
   const [showCorujaBoard, setShowCorujaBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const { user: currentUser } = useSelector((state) => state.auth);

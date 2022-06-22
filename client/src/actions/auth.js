@@ -7,11 +7,10 @@ import {
     LOGIN_SUCCESS,
 } from './types';
 
-import authService from '../services/auth.service';
-import { response } from 'express';
+import AuthService from '../services/auth.service';
 
 export const register = (username, email, password) => (dispatch) => {
-    return authService.register(username, email, password).then(
+    return AuthService.register(username, email, password).then(
         (response) => {
             dispatch({
                 type: REGISTER_SUCCESS,
@@ -40,7 +39,7 @@ export const register = (username, email, password) => (dispatch) => {
 };
 
 export const login = (username, password) => (dispatch) => {
-    return authService.login(username, password).then(
+    return AuthService.login(username, password).then(
         (data) => {
             dispatch({
                 type: LOGIN_SUCCESS,
@@ -66,7 +65,7 @@ export const login = (username, password) => (dispatch) => {
 }
 
 export const logout = () => (dispatch) => {
-    authService.logout();
+    AuthService.logout();
     dispatch({
         type: LOGOUT,
     });
