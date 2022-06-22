@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Router, Switch, Route, Link } from 'react-router-dom';
+import { Router, Routes, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import Login from './components/Login';
@@ -11,7 +11,7 @@ import BoardMembre from './components/BoardMembre';
 import BoardCoruja from './components/BoardCoruja';
 import BoardAdmin from './components/BoardAdmin';
 import { logout } from './actions/auth';
-import { className } from './actions/message';
+import { clearMessage } from './actions/message';
 import { history } from './helpers/history';
 
 function App() {
@@ -101,15 +101,15 @@ function App() {
           )}
         </nav>
         <div className='container mt-3'>
-          <Switch>
-            <Route exact path={['/', '/home']} component={Home} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/profile' component={Profile} />
-            <Route path='/membre' component={BoardMembre} />
-            <Route path='/coruja' component={BoardCoruja} />
-            <Route path='/admin' component={BoardAdmin} />
-          </Switch>
+          <Route>
+            <Route exact path={['/', '/home']} element={<Home/>} />
+            <Route exact path='/login' element={<Login/>} />
+            <Route exact path='/register' element={<Register/>} />
+            <Route exact path='/profile' element={<Profile/>} />
+            <Route path='/membre' element={<BoardMembre/>} />
+            <Route path='/coruja' element={<BoardCoruja/>} />
+            <Route path='/admin' element={<BoardAdmin/>} />
+          </Route>
         </div>
       </div>
     </Router>

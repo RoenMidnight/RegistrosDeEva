@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
@@ -24,7 +24,7 @@ const Login = (props) => {
     const [loading, setLoading] = useState(false);
     const { isLoggedIn } = useSelector(state => state.auth);
     const { message } = useSelector(state => state.message);
-    const useDispatch = useDispatch();
+    const dispatch = useDispatch();
     
     const onChangeUsername = (e) => {
         const username = e.target.value;
@@ -55,7 +55,7 @@ const Login = (props) => {
     };
 
     if (isLoggedIn){
-        return <Redirect to="/profile" />
+        return <Navigate to="/profile" />
     }
 
     return (
