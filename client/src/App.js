@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Router, Route, Link } from 'react-router-dom';
+import { Router, Route, Routes, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import Login from './components/Login';
@@ -39,7 +39,7 @@ const App = () => {
   }
 
   return (
-    <Router history={history}>
+    <Router location={history.location} navigator={history}>
       <div>
         <nav className='navbar navbar-expand navbar-dark bg-dark'>
           <Link to={"/"} className="navbar-brand">
@@ -47,7 +47,7 @@ const App = () => {
           </Link>
           <div className='navbar-nav mr-auto'>
             <li className='nav-item'>
-              <Link to={'/home'} className='nav-link'>
+              <Link to={"/home"} className='nav-link'>
                 Home
               </Link>
             </li>
@@ -76,7 +76,7 @@ const App = () => {
           {currentUser ? (
             <div className='navbar-nav ml-auto'>
               <li className='nav-item'>
-                <Link to={'/profile'} className='nav-link'>
+                <Link to={"/profile"} className='nav-link'>
                   {currentUser.username}
                 </Link>
               </li>
@@ -89,7 +89,7 @@ const App = () => {
           ) : (
             <div className='navbar-nav ml-auto'>
               <li className='nav-item'>
-                <Link to={'/login'} className='nav-link'>
+                <Link to={"/login"} className='nav-link'>
                   Login
                 </Link>
               </li>
@@ -102,15 +102,16 @@ const App = () => {
           )}
         </nav>
         <div className='container mt-3'>
-          <Route>
-            <Route exact path={['/', '/home']} element={<Home/>} />
+          <Routes>
+            <Route exact path='/' element={<Home/>} />
+            <Route exact path='/home' element={<Home/>} />
             <Route exact path='/login' element={<Login/>} />
             <Route exact path='/register' element={<Register/>} />
             <Route exact path='/profile' element={<Profile/>} />
             <Route path='/membre' element={<BoardMembre/>} />
             <Route path='/coruja' element={<BoardCoruja/>} />
             <Route path='/admin' element={<BoardAdmin/>} />
-          </Route>
+          </Routes>
         </div>
       </div>
     </Router>
