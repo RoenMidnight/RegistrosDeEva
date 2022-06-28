@@ -1,7 +1,8 @@
 import axios from 'axios';
 import authHeader from './auth-header';
+require('dotenv').config()
 
-const API_URL = process.env.API_URL_TEST;
+const API_URL = process.env.API_URL_TEST || "http://localhost:3000/api/test/";
 
 const getPublicContent = () => {
     return axios.get(API_URL + "all");
