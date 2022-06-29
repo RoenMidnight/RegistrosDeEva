@@ -53,9 +53,9 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [successful, setSuccessful] = useState(false);
-    const [message] = useSelector(state => state.message);
+    const { message } = useSelector(state => state.message);
     const dispatch = useDispatch();
-
+    
     const onChangeUsername = (e) => {
         const username = e.target.value;
         setUsername(username);
@@ -106,7 +106,7 @@ const Register = () => {
                                     validations={[required, vusername]}
                                 />
                             </div>
-                            <div class='form-group'>
+                            <div className='form-group'>
                                 <label htmlFor='email'>Email</label>
                                 <Input
                                     type="text"
@@ -117,7 +117,7 @@ const Register = () => {
                                     validations={[required, validEmail]}
                                 />
                             </div>
-                            <div class='form-group'>
+                            <div className='form-group'>
                                 <label htmlFor='password'>Password</label>
                                 <Input
                                     type="password"
@@ -145,6 +145,8 @@ const Register = () => {
             </div>
         </div>
     )
+
+   
 };
 
 export default Register;
