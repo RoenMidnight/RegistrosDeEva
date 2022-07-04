@@ -36,6 +36,16 @@ const vusername = (value) => {
     }
 }
 
+const vdiscordid = (value) => {
+    if (value.length < 5) {
+        return (
+            <div className='alert alert-danger' role='alert'>
+                DiscordID Inválido.
+            </div>
+        );
+    }
+}
+
 const vpassword = (value) => {
     if (value.length < 6 || value.length > 40){
         return (
@@ -51,6 +61,7 @@ const Register = () => {
     const checkBtn = useRef();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
+    const [discordID, setDiscordID] = useState("");
     const [password, setPassword] = useState("");
     const [successful, setSuccessful] = useState(false);
     const { message } = useSelector(state => state.message);
@@ -60,13 +71,20 @@ const Register = () => {
         const username = e.target.value;
         setUsername(username);
     }
+    
     const onChangeEmail = (e) => {
         const email = e.target.value;
         setEmail(email);
     }
+
     const onChangePassword = (e) => {
         const password = e.target.value;
         setPassword(password);
+    }
+
+    const onChangeDiscordID = (e) => {
+        const discordID = e.target.value;
+        setDiscordID(discordID)
     }
     
     const handleRegister = (e) => {
@@ -74,7 +92,7 @@ const Register = () => {
         setSuccessful(false);
         form.current.validateAll();
         if (checkBtn.current.context._errors.length === 0){
-            dispatch(register(username, email, password))
+            dispatch(register(username, email, password, discordID))
             .then(() => {
                 setSuccessful(true);
             })
@@ -97,7 +115,7 @@ const Register = () => {
                         <div>
                             <div className='form-group'>
                                 <label htmlFor='username'>Username</label>
-                                <Input
+                                <input
                                     type="text"
                                     className="form-control"
                                     name="username"
@@ -108,7 +126,7 @@ const Register = () => {
                             </div>
                             <div className='form-group'>
                                 <label htmlFor='email'>Email</label>
-                                <Input
+                                <input
                                     type="text"
                                     className="form-control"
                                     name="email"
@@ -118,8 +136,19 @@ const Register = () => {
                                 />
                             </div>
                             <div className='form-group'>
+                                <label htmlFor='email'>DiscordID</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="discordID"
+                                    value={email}
+                                    onChange={onChangeDiscordID}
+                                    validations={[required, vdiscordid]}
+                                />
+                            </div>
+                            <div className='form-group'>
                                 <label htmlFor='password'>Password</label>
-                                <Input
+                                <input
                                     type="password"
                                     className="form-control"
                                     name="password"

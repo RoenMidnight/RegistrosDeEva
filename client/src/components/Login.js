@@ -69,7 +69,7 @@ const Login = (props) => {
                 <Form onSubmit={handleLogin} ref={form}>
                     <div className='form-group'>
                         <label htmlFor="username">Username</label>
-                        <Input
+                        <input
                             type="text"
                             className="form-control"
                             value={username}
@@ -79,7 +79,7 @@ const Login = (props) => {
                     </div>
                     <div className='form-group'>
                         <label htmlFor="password">password</label>
-                        <Input 
+                        <input 
                             type="password"
                             className="form-control"
                             name="password"
