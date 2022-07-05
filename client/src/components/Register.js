@@ -136,12 +136,12 @@ const Register = () => {
                                 />
                             </div>
                             <div className='form-group'>
-                                <label htmlFor='email'>DiscordID</label>
+                                <label htmlFor='discordID'>DiscordID</label>
                                 <input
                                     type="text"
                                     className="form-control"
                                     name="discordID"
-                                    value={email}
+                                    value={discordID}
                                     onChange={onChangeDiscordID}
                                     validations={[required, vdiscordid]}
                                 />

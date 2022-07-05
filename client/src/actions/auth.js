@@ -9,8 +9,8 @@ import {
 
 import AuthService from '../services/auth.service';
 
-export const register = (username, email, password) => (dispatch) => {
-    return AuthService.register(username, email, password).then(
+export const register = (username, email, password, discordID) => (dispatch) => {
+    return AuthService.register(username, email, password, discordID).then(
         (response) => {
             dispatch({
                 type: REGISTER_SUCCESS,

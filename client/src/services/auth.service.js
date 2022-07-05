@@ -1,7 +1,7 @@
 import axios from 'axios';
 require('dotenv').config();
 
-const API_URL = process.env.API_URL_AUTH;
+const API_URL = process.env.API_URL_AUTH || 'http://localhost:3000/api/auth/';
 
 const register = (username, email, password, discordId) => {
     return axios.post(API_URL + 'signup', {
